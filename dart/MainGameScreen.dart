@@ -14,9 +14,9 @@ class MainGameScreen {
     ctx = canvas.getContext("2d");
     window.setInterval(f() => drawFrame(), 20);
     word_x = 512;
-    word_y = 10;
-    
-    player1Won = true;
+    word_y = 180;
+    wordText = "banana";
+    player1Won = true  ;
     isStopped = false;
     
   }
@@ -27,13 +27,7 @@ class MainGameScreen {
     ctx.clearRect(0, 0, 1024, 400);
     ctx.setLineWidth(1);
 
-    drawWord(word_x, word_y, "banana");
-    //draw line just to know it's working for now
-    /*ctx.setStrokeColor(BACKGROUND_COLOR);
-    ctx.moveTo(0, 0);
-    ctx.lineTo(500, 400);
-    ctx.closePath();
-    ctx.stroke();*/
+    drawWord(word_x, word_y, wordText);
     if (!isStopped){
       if (word_y>(SCREEN_LIMIT+10))
         word_y=5;
@@ -44,11 +38,31 @@ class MainGameScreen {
   // draws a banana at X,Y and with a given text
   void drawWord(num x, num y, String text){
     document.query('#status').innerHTML = "chegou aqui 4";
-    ctx.setStrokeColor(NORMAL_TEXT_COLOR);
+    if (isStopped){
+      if (player1Won)
+        ctx.setStrokeColor(PLAYER1_TEXT_COLOR);
+      else
+        ctx.setStrokeColor(PLAYER2_TEXT_COLOR);
+    }else
+      ctx.setStrokeColor(NORMAL_TEXT_COLOR);
     ctx.font = "20pt Arial";
-    ctx.strokeText(text, x, y);
-    ctx.setFillColor(PLAYER1_TEXT_COLOR);
+    if (isStopped)
+    { 
+      // fun stuff .. this does the blincking
+      drawNow++;
+      if (drawNow>2){
+        ctx.strokeText(text, x, y);
+        if (drawNow>20)
+          drawNow=0;
+      }
+    }else
+      ctx.strokeText(text, x, y);
+    
+    //this should fill the text, but it's not working right now ...
+    /*ctx.setFillColor(PLAYER1_TEXT_COLOR);
+    ctx.fillStyle = PLAYER1_TEXT_COLOR;
     ctx.fill();
+    */
     document.query('#status').innerHTML = "chegou aqui 5";
   }
   
@@ -71,6 +85,8 @@ class MainGameScreen {
   **/
   void startNewRound(String word){
     isStopped=false;
+    wordText= word;
+    
   }
   
   //variables here
@@ -83,7 +99,9 @@ class MainGameScreen {
   int word_x, word_y;
   final int SCREEN_LIMIT = 400;
   
+  String wordText;
+  
   bool isStopped; // defines that word animation is stopped
-  bool drawNow;
+  int drawNow=0;
   bool player1Won;
 }
