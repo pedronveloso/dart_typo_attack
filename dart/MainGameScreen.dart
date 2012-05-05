@@ -1,4 +1,5 @@
 #import('dart:html');
+#source('profile.dart');
 
 //program starts here
 main() {
@@ -8,6 +9,8 @@ main() {
   inputBox.on.keyDown.add((e) {
     if (e.keyCode == 13){
       animation.startNewRound("Saguim");
+      /**codigo do profile **/
+      new profile().listen2playerdatasumission();
     }
   });
 }
@@ -103,7 +106,12 @@ class MainGameScreen {
     wordText = word;
     
   }
-  
+  /**
+  *clears screen and starts the game phase
+  **/
+  void startgamephase(){
+    document.query("#profile").classes.add("hidden");
+  }
   //variables here
   CanvasRenderingContext2D ctx;
   static final String BACKGROUND_COLOR = "orange";
