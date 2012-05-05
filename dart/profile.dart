@@ -1,4 +1,4 @@
-class profile{
+class Profile{
   int avatar;
   string name;
   string session;
@@ -18,7 +18,7 @@ class profile{
     });
   } 
     void listen2playerdatasumission(){
-    loadavatarselection(); 
-    collectdatnsubmit();
+      loadavatarselection(); 
+      collectdatnsubmit();
   }
 }

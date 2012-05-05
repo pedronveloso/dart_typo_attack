@@ -4,6 +4,8 @@
 //program starts here
 main() {
   var drawCanvas =  new DrawCanvas();
+  var profile = new Profile();
+  profile.listen2playerdatasumission();
   drawCanvas.Init();
   Element inputBox = document.query("#inputbox");
   inputBox.on.keyDown.add((e) {
