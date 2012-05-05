@@ -4,3 +4,9 @@ border : 2px solid black;
 .hidden{
 display:none;
 }
+#canvas{
+position:absolute;
+top:0px;
+left: 50%;
+margin-left: -512px;
+}
