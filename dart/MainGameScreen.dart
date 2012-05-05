@@ -2,9 +2,14 @@
 
 //program starts here
 main() {
-  document.body.nodes.add(new Element.html('<div>"hello"</div>'));
-  document.query('#status').innerHTML = "chegou aqui 1";
-  new MainGameScreen().Init();
+  var animation =  new MainGameScreen();
+  animation.Init();
+  Element inputBox = document.query("#inputbox");
+  inputBox.on.keyDown.add((e) {
+    if (e.keyCode == 13){
+      animation.startNewRound("Saguim");
+    }
+  });
 }
 
 //class that deals with Canvas stuff
@@ -12,36 +17,96 @@ class MainGameScreen {
   
   //initialize the canvas we'll be drawing on
   Init(){
-    document.query('#status').innerHTML = "chegou aqui 2";
     CanvasElement canvas = document.query("#canvas");
     ctx = canvas.getContext("2d");
-    drawFrame();
+    window.setInterval(f() => drawFrame(), 20);
+    word_x = 512;
+    word_y = 180;
+    wordText = "banana";
+    player1Won = true  ;
+    isStopped = false;
+    
   }
 
   // draws a single frame of the game
   void drawFrame() {
-    document.query('#status').innerHTML = "chegou aqui 3";
-    ctx.beginPath();
     ctx.clearRect(0, 0, 1024, 400);
-    ctx.setLineWidth(2);
-    ctx.setFillColor(BACKGROUND_COLOR);
-    ctx.setStrokeColor(BACKGROUND_COLOR);
-    ctx.fill();
-    
-    ctx.closePath();
-    
-    //draw line just to know it's working for now
-    ctx.moveTo(0, 0);
-    ctx.lineTo(500, 400);
-    ctx.stroke();
+    ctx.setLineWidth(1);
+
+    drawWord(word_x, word_y);
+    if (!isStopped){
+      if (word_y>(SCREEN_LIMIT+10))
+        word_y=5;
+      word_y++;
+    }
   }
   
   // draws a banana at X,Y and with a given text
-  void drawBanana(num x, num y, String text){
-    //ctx.drawImage(canvas_OR_image_OR_video, sx_OR_x, sy_OR_y);  
+  void drawWord(num x, num y){
+    if (isStopped){
+      if (player1Won)
+        ctx.setStrokeColor(PLAYER1_TEXT_COLOR);
+      else
+        ctx.setStrokeColor(PLAYER2_TEXT_COLOR);
+    }else
+      ctx.setStrokeColor(NORMAL_TEXT_COLOR);
+    ctx.font = "20pt Arial";
+    if (isStopped)
+    { 
+      // fun stuff .. this does the blincking
+      drawNow++;
+      if (drawNow>2){
+        ctx.strokeText(wordText, x, y);
+        if (drawNow>20)
+          drawNow=0;
+      }
+    }else
+      ctx.strokeText(wordText, x, y);
+    
+    //this should fill the text, but it's not working right now ...
+    /*ctx.setFillColor(PLAYER1_TEXT_COLOR);
+    ctx.fillStyle = PLAYER1_TEXT_COLOR;
+    ctx.fill();
+    */
+  }
+  
+  /**
+  * Call this to set that a player won
+  **/
+  void playerWon(int playerNumber){
+    isStopped=true;
+    if (playerNumber==1)
+    {
+      player1Won = true;
+    }
+    else{
+      player1Won = false;
+    }
+  }
+  
+  /**
+  * Starts a new Round with a given word
+  **/
+  void startNewRound(String word){
+    document.query('#status').innerHTML = "mudar a cena";
+    isStopped=false;
+    wordText = word;
+    
   }
   
   //variables here
   CanvasRenderingContext2D ctx;
   static final String BACKGROUND_COLOR = "orange";
+  static final String NORMAL_TEXT_COLOR = "black";
+  static final String PLAYER1_TEXT_COLOR = "blue";
+  static final String PLAYER2_TEXT_COLOR = "red";
+  
+  int word_x, word_y;
+  final int SCREEN_LIMIT = 400;
+  
+  String wordText;
+  
+  bool isStopped; // defines that word animation is stopped
+  int drawNow=0;
+  bool player1Won;
 }

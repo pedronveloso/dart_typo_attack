@@ -1,23 +1,31 @@
 #import('dart:html');
 
-class profilemanager{
+class profile{
   int avatar;
-  string name;  
+  string name;
+  string session;
   private loadavatarselection(){
-    var avatarslist = document.query('#avatarslist');
-    avatarslist.on.click.add((event) {
-     if (event.target.id.contains('[0-9]')){
-        if (this.avatar != null) this.avatar.classname.remove('avatarselected');
-        document.query('#avatar'+event.target.id.substring(event.target.id.length)).className.add('avatarselected');
+    document.query('#avatarslist').on.click.add((event) {
+     if (event.target.id.contains(new RegExp("[0-9]"))){
+        if (this.avatar != null) this.avatar.classes.remove('avatarselected');
+         event.target.classes.add('avatarselected');
         this.avatar = event.target;
      }
     });
   }
-  public run(){
-    loadavatarselection();
+  private collectdatnsubmit(){
+    document.query('#startbtn').on.click.add((event){
+    this.name = document.query('#fname').value;
+    
+    });
+  } 
+  private listen2playerdatasumission(){
+    loadavatarselection(); 
+    collectdatnsubmit();
   }
-}
+ 
+ }
 
 void main() {
-  new profilemanager().run();
+  new profile().listen2playerdatasumission();
 }
