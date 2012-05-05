@@ -21,7 +21,7 @@ class profile{
   } 
   private listen2playerdatasumission(){
     loadavatarselection(); 
-    collectdata();
+    collectdatnsubmit();
   }
  
  }
