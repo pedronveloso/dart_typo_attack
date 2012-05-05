@@ -3,20 +3,19 @@
 
 //program starts here
 main() {
-  var animation =  new MainGameScreen();
-  new profile().listen2playerdatasumission();
-  animation.Init();
+  var drawCanvas =  new DrawCanvas();
+  drawCanvas.Init();
   Element inputBox = document.query("#inputbox");
   inputBox.on.keyDown.add((e) {
     if (e.keyCode == 13){
-      animation.startNewRound("Saguim");
+      drawCanvas.startNewRound("Saguim");
       /**codigo do profile **/
     }
   });
 }
 
 //class that deals with Canvas stuff
-class MainGameScreen {
+class DrawCanvas {
   
   //initialize the canvas we'll be drawing on
   Init(){
