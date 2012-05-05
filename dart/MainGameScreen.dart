@@ -2,7 +2,14 @@
 
 //program starts here
 main() {
-  new MainGameScreen().Init();
+  var animation =  new MainGameScreen();
+  animation.Init();
+  Element inputBox = document.query("#inputbox");
+  inputBox.on.keyDown.add((e) {
+    if (e.keyCode == 13){
+      animation.startNewRound("Saguim");
+    }
+  });
 }
 
 //class that deals with Canvas stuff
@@ -23,11 +30,10 @@ class MainGameScreen {
 
   // draws a single frame of the game
   void drawFrame() {
-    document.query('#status').innerHTML = "chegou aqui 3";
     ctx.clearRect(0, 0, 1024, 400);
     ctx.setLineWidth(1);
 
-    drawWord(word_x, word_y, wordText);
+    drawWord(word_x, word_y);
     if (!isStopped){
       if (word_y>(SCREEN_LIMIT+10))
         word_y=5;
@@ -36,8 +42,7 @@ class MainGameScreen {
   }
   
   // draws a banana at X,Y and with a given text
-  void drawWord(num x, num y, String text){
-    document.query('#status').innerHTML = "chegou aqui 4";
+  void drawWord(num x, num y){
     if (isStopped){
       if (player1Won)
         ctx.setStrokeColor(PLAYER1_TEXT_COLOR);
@@ -51,19 +56,18 @@ class MainGameScreen {
       // fun stuff .. this does the blincking
       drawNow++;
       if (drawNow>2){
-        ctx.strokeText(text, x, y);
+        ctx.strokeText(wordText, x, y);
         if (drawNow>20)
           drawNow=0;
       }
     }else
-      ctx.strokeText(text, x, y);
+      ctx.strokeText(wordText, x, y);
     
     //this should fill the text, but it's not working right now ...
     /*ctx.setFillColor(PLAYER1_TEXT_COLOR);
     ctx.fillStyle = PLAYER1_TEXT_COLOR;
     ctx.fill();
     */
-    document.query('#status').innerHTML = "chegou aqui 5";
   }
   
   /**
@@ -84,8 +88,9 @@ class MainGameScreen {
   * Starts a new Round with a given word
   **/
   void startNewRound(String word){
+    document.query('#status').innerHTML = "mudar a cena";
     isStopped=false;
-    wordText= word;
+    wordText = word;
     
   }
   
