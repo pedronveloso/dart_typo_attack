@@ -4,13 +4,13 @@
 //program starts here
 main() {
   var animation =  new MainGameScreen();
+  new profile().listen2playerdatasumission();
   animation.Init();
   Element inputBox = document.query("#inputbox");
   inputBox.on.keyDown.add((e) {
     if (e.keyCode == 13){
       animation.startNewRound("Saguim");
       /**codigo do profile **/
-      new profile().listen2playerdatasumission();
     }
   });
 }
