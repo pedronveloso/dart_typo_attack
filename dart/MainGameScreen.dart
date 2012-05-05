@@ -25,7 +25,12 @@ class MainGameScreen {
     wordText = "banana";
     player1Won = true  ;
     isStopped = false;
-    
+    loadedBananaImg = false;
+    imgBanana = new Element.tag('img'); 
+    imgBanana.src = "banana.png";
+    imgBanana.on.load.add((event) {
+      loadedBananaImg=true;
+    });
   }
 
   // draws a single frame of the game
@@ -63,6 +68,11 @@ class MainGameScreen {
     }else
       ctx.strokeText(wordText, x, y);
     
+    if (loadedBananaImg) {
+      ctx.drawImage(imgBanana, x-15, y-160);
+    }
+    
+   // });
     //this should fill the text, but it's not working right now ...
     /*ctx.setFillColor(PLAYER1_TEXT_COLOR);
     ctx.fillStyle = PLAYER1_TEXT_COLOR;
@@ -108,5 +118,7 @@ class MainGameScreen {
   
   bool isStopped; // defines that word animation is stopped
   int drawNow=0;
+  bool loadedBananaImg = false;
   bool player1Won;
+  ImageElement imgBanana;
 }
