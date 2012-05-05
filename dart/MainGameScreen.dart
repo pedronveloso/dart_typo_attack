@@ -1,19 +1,23 @@
 #import('dart:html');
+#source('profile.dart');
 
 //program starts here
 main() {
-  var animation =  new MainGameScreen();
-  animation.Init();
+  var drawCanvas =  new DrawCanvas();
+  var profile = new Profile();
+  profile.listen2playerdatasumission();
+  drawCanvas.Init();
   Element inputBox = document.query("#inputbox");
   inputBox.on.keyDown.add((e) {
     if (e.keyCode == 13){
-      animation.startNewRound("Saguim");
+      drawCanvas.startNewRound("Saguim");
+      /**codigo do profile **/
     }
   });
 }
 
 //class that deals with Canvas stuff
-class MainGameScreen {
+class DrawCanvas {
   
   //initialize the canvas we'll be drawing on
   Init(){
@@ -25,7 +29,12 @@ class MainGameScreen {
     wordText = "banana";
     player1Won = true  ;
     isStopped = false;
-    
+    loadedBananaImg = false;
+    imgBanana = new Element.tag('img'); 
+    imgBanana.src = "banana.png";
+    imgBanana.on.load.add((event) {
+      loadedBananaImg=true;
+    });
   }
 
   // draws a single frame of the game
@@ -63,6 +72,11 @@ class MainGameScreen {
     }else
       ctx.strokeText(wordText, x, y);
     
+    if (loadedBananaImg) {
+      ctx.drawImage(imgBanana, x-15, y-160);
+    }
+    
+   // });
     //this should fill the text, but it's not working right now ...
     /*ctx.setFillColor(PLAYER1_TEXT_COLOR);
     ctx.fillStyle = PLAYER1_TEXT_COLOR;
@@ -93,7 +107,12 @@ class MainGameScreen {
     wordText = word;
     
   }
-  
+  /**
+  *clears screen and starts the game phase
+  **/
+  void startgamephase(){
+    document.query("#profile").classes.add("hidden");
+  }
   //variables here
   CanvasRenderingContext2D ctx;
   static final String BACKGROUND_COLOR = "orange";
@@ -108,5 +127,7 @@ class MainGameScreen {
   
   bool isStopped; // defines that word animation is stopped
   int drawNow=0;
+  bool loadedBananaImg = false;
   bool player1Won;
+  ImageElement imgBanana;
 }
