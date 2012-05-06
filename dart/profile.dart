@@ -16,7 +16,7 @@ class Profile{
   void collectdatnsubmit(){
     document.query('#startbtn').on.click.add((event){
       this.name = document.query('#fname').value;
-    
+      document.query("#profile").style.left="-500px";
     });
   } 
   void listen2playerdatasumission(){

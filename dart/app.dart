@@ -4,12 +4,13 @@
 
 class app {
   void startgamephase(){
-    document.query("#profile").classes.add("hidden");
+    
   }
 }
 
 void main() {
-  
+var profile = new Profile();
+profile.listen2playerdatasumission();
 }
 
 _main() {

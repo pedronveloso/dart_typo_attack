@@ -45,6 +45,10 @@ height:300px;
 #profileinput{
 margin: 5px 0 0 10px;
 }
+#startbtn{
+margin:10px 0 0 150px;
+width:50px;
+}
 .avatarselected{
 	border: 2px solid black;
 }
