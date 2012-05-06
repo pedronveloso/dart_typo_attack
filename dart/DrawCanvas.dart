@@ -20,12 +20,29 @@ class DrawCanvas {
     player1Won = true  ;
     isStopped = false;
     loadedBananaImg = false;
-    imgBanana = new Element.tag('img'); 
-    imgBanana.src = "banana.png";
+    imgBanana = new Element.tag('img');
+    imgBanana.src = "fighter.png";
     imgBanana.on.load.add((event) {
       loadedBananaImg=true;
     });
     print('init end');
+    
+
+      audio = new AudioElement();
+      
+      if (audio.canPlayType("audio/ogg", "") != "")
+        audio.src = "background_music/imperial_march.ogg";
+      
+      audio.on["canplaythrough"].add(playAudio);
+      audio.on["ended"].add(playAudio);
+
+    
+  }
+  
+  void playAudio(Event event)
+  {
+    print("${event.type}");
+    audio.play();
   }
 
   // draws a single frame of the game
@@ -56,15 +73,15 @@ class DrawCanvas {
       // fun stuff .. this does the blincking
       drawNow++;
       if (drawNow>2){
-        ctx.strokeText(wordText, x, y);
+        ctx.strokeText(wordText, x-textSubtractLenght(wordText), y);
         if (drawNow>20)
           drawNow=0;
       }
     }else
-      ctx.strokeText(wordText, x, y);
+      ctx.strokeText(wordText, x-textSubtractLenght(wordText), y);
     
     if (loadedBananaImg) {
-      ctx.drawImage(imgBanana, x-15, y-160);
+      ctx.drawImage(imgBanana, x-64, y-140);
     }
     
    // });
@@ -95,15 +112,18 @@ class DrawCanvas {
   void startNewRound(String word){
     isStopped = false;
     wordText = word;
-    
   }
+  
+  int textSubtractLenght(String text){
+    return 7*text.length;
+  }
+  
   /**
   *clears screen and starts the game phase
   **/
   //variables here
   CanvasRenderingContext2D ctx;
-  static final String BACKGROUND_COLOR = "orange";
-  static final String NORMAL_TEXT_COLOR = "black";
+  static final String NORMAL_TEXT_COLOR = "white";
   static final String PLAYER1_TEXT_COLOR = "blue";
   static final String PLAYER2_TEXT_COLOR = "red";
   
@@ -117,4 +137,6 @@ class DrawCanvas {
   bool loadedBananaImg = false;
   bool player1Won;
   ImageElement imgBanana;
+  
+  AudioElement audio;
 }
