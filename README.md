@@ -6,6 +6,6 @@ Game uses WebSockets and 2D Canvas, both Server and Client are written in DART.
 
 This project was done by:
 
-Pedro Veloso
-David Elias
-João Oliveira
+* Pedro Veloso
+* David Elias
+* João Oliveira
