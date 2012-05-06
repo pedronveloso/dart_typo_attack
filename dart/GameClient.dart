@@ -46,6 +46,10 @@ class GameClient {
     }
     // ready
     if (args['player2'] != null){
+      Element avatar = document.query('#${args['player2']['avatar']}');
+      // print(document.query('#${args['player2']['avatar']}'));
+      // print(args['player2']['avatar']);
+      document.query('#player2 img').src = avatar.src;
       el.query('#player2 h2').innerHTML = args['player2']['nickname'];
       this.drawCanvas.Init();
       print(args['word']);

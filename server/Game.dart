@@ -40,10 +40,10 @@ class Game {
         lastWord = word;
         players.forEach((k,v){
           if (k != nickname){
-            player2 = {'nickname': k};
+            player2 = {'nickname': k, 'avatar': Avatars[k]};
             v.send(JSON.stringify({
               'action': 'startGame',
-              'args': {'ready': ready, 'player2': {'nickname': nickname}, 'word': word,'avatarp2':avatar}
+              'args': {'ready': ready, 'player2': {'nickname': nickname, 'avatar': avatar}, 'word': word}
             }));
           }
         });
