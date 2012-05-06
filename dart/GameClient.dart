@@ -55,6 +55,7 @@ class GameClient {
   }
   
   nextRound(args){
+    inputBox.value = '';
     if (args['win']){
       this.drawCanvas.playerWon(1);
       score += 1;
