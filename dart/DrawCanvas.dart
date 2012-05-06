@@ -93,8 +93,7 @@ class DrawCanvas {
   * Starts a new Round with a given word
   **/
   void startNewRound(String word){
-    document.query('#status').innerHTML = "mudar a cena";
-    isStopped=false;
+    isStopped = false;
     wordText = word;
     
   }

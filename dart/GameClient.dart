@@ -12,6 +12,18 @@ class GameClient {
   
   GameClient(this.el, this.drawCanvas) {
     isVisible = false;
+    
+    Element inputBox = el.query('input');
+    inputBox.on.keyDown.add((e) {
+      if (e.keyCode == 13){
+        print(inputBox.value);
+        
+        socket.send(JSON.stringify({'action': 'testWord', 'args': {
+          'nickname': player['nickname'],
+          'word': inputBox.value
+        }}));
+      }
+    });
   }
   
   register(nickname) {
@@ -24,11 +36,14 @@ class GameClient {
       el.style.zIndex = '1';
       el.style.display = 'block';
       el.style.opacity = '1';
+      document.query('#profile').style.display = 'none';
     }
     // ready
     if (args['player2'] != null){
       el.query('#player2 h2').innerHTML = args['player2']['nickname'];
       this.drawCanvas.Init();
+      print(args['word']);
+      this.drawCanvas.startNewRound(args['word']);
     }
     el.query('#player1 h2').innerHTML = player1['nickname'];
   }

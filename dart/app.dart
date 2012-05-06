@@ -12,7 +12,7 @@ class app {
 }
 
 void main() {
-  var drawCanvas = new DrawCanvas(document.query('#game>canvas'));
+  var drawCanvas = new DrawCanvas(document.query('#game canvas'));
   var game = new GameClient(document.query('#game'), drawCanvas);
   var profile = new Profile(document.query('#profile'), game);
   // profile.listen2playerdatasumission();
