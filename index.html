@@ -8,25 +8,34 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<img src="images/typologo.png" alt="typo attack logo"/>
   <section id="profile">
- <h1>Player Profile</h1>
-  <div id="profileinput">
-             Name:<input type="text" name="fname" id="fname"/>
-            <br/>
-            <p>Select Avatar:</p>
-            <br/>
-            <div id="avatarslist">
-            <img src="http://img1.jurko.net/avatar_16693.jpg" id="avatar1" alt="avatar1"/>
-            <img src="http://img1.jurko.net/avatar_8820.gif" id="avatar2" alt="avatar2"/>
-            <img src="http://img1.jurko.net/avatar_11188.gif" id="avatar3" alt="avatar3"/>
-            <img src="http://img1.jurko.net/797509.jpg" id="avatar4" alt="avatar4"/>
-            </div>
-            <button type="button" id="startbtn">start</button>
+    <h1>Player Profile</h1>
+    <div id="profileinput">
+      <label>Name:</label>
+      <input type="text" name="fname" id="fname"/>
+
+      <p>Select Avatar:</p>
+      <div id="avatarslist">
+        <img src="http://img1.jurko.net/avatar_16693.jpg" id="avatar1" alt="avatar1"/>
+        <img src="http://img1.jurko.net/avatar_8820.gif" id="avatar2" alt="avatar2"/>
+        <img src="http://img1.jurko.net/avatar_11188.gif" id="avatar3" alt="avatar3"/>
+        <img src="http://img1.jurko.net/797509.jpg" id="avatar4" alt="avatar4"/>
+      </div>
+      <button type="button" id="startbtn">start</button>
   </section>
 
   <section id="game">
     <canvas></canvas>
+    <div id="players">
+      <div id="player1" class="player">
+        <h2></h2>
+        <span class="score">0</span>
+      </div>
+      <div id="player2" class="player">
+        <span class="score">0</span>
+        <h2></h2>
+      </div>
+    </div>
   </section>
 
   <script type="application/dart" src="./dart/app.dart"></script>

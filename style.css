@@ -1,10 +1,10 @@
 body {
-	background: #dfdfdf;
+	background: #dfdfdf url(images/typologo.png) no-repeat 20px 100px;
 	font-family: Helvetica,Arial,sans-serif;
 }
 
 section {
-	background: #fff;
+	background: transparent;
 	border-radius: 4px;
 	position: absolute;
 	top: 20px;
@@ -24,7 +24,7 @@ section {
         text-align: center;
 	}
 
-#start {
+#profile {
 	margin-left: -250px;
 	width: 500px;
 }
@@ -34,14 +34,48 @@ section {
 	margin-left: -400px;
 	width: 800px;
 }
-#profile{
-position:absolute;
-top:130px;
-left:20px;
-width: 400px;
--webkit-transition: left 2s;
-height:300px;
-}
+	#game canvas {
+		border-bottom: 1px solid #ccc;
+		width: 800px;
+		height: 350px;
+		z-index: 10;
+	}
+
+	#game #players {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		height: 100px;
+	}
+	#game .player {
+		position: absolute;
+		bottom: 0;
+		display: -webkit-box;
+		padding-bottom: 20px;
+	}
+		#game .player h2 {
+			margin: 0;
+			padding: 0 10px;
+		}
+		#game .player .score {
+			color: #fff;
+                background: #3161A8;
+                padding: 2px 10px;
+                -webkit-border-radius: 4px;
+                border: 2px solid #12243F;
+                background-image: -webkit-gradient(linear, 50% 0%, 50% 100%,
+                                       color-stop(0%, #618ED1),
+                                       color-stop(1%, #3161A8),
+                                       color-stop(100%, #214170));
+		}
+	#player1 {
+		left: 20px;
+	}
+	#player2 {
+		right: 20px;
+	}
+
 #profileinput{
 margin: 5px 0 0 10px;
 }

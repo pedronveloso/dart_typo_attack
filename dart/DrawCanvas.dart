@@ -5,16 +5,16 @@ class DrawCanvas {
   
   DrawCanvas(CanvasElement el) {
     canvas = el;
-    print(canvas);
   }
   
   
   //initialize the canvas we'll be drawing on
   Init(){
+    print('init');
     // CanvasElement canvas = document.query("#canvas");
     ctx = canvas.getContext("2d");
     window.setInterval(f() => drawFrame(), 20);
-    word_x = 512;
+    word_x = 400;
     word_y = 180;
     wordText = "banana";
     player1Won = true  ;
@@ -25,11 +25,12 @@ class DrawCanvas {
     imgBanana.on.load.add((event) {
       loadedBananaImg=true;
     });
+    print('init end');
   }
 
   // draws a single frame of the game
   void drawFrame() {
-    ctx.clearRect(0, 0, 1024, 400);
+    ctx.clearRect(0, 0, 800, 350);
     ctx.setLineWidth(1);
 
     drawWord(word_x, word_y);
@@ -108,7 +109,7 @@ class DrawCanvas {
   static final String PLAYER2_TEXT_COLOR = "red";
   
   int word_x, word_y;
-  final int SCREEN_LIMIT = 400;
+  final int SCREEN_LIMIT = 350;
   
   String wordText;
   
