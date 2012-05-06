@@ -1,4 +1,4 @@
-![TYPO ATTACK](https://github.com/pedronveloso/dart_typo_attack/blob/master/images/typologo.png)
+![TYPO ATTACK](http://github.com/pedronveloso/dart_typo_attack/raw/master/images/typologo.png)
 
 This was a project made for the 2012 Lisbon DART Hackaton. This project is a multiplayer game where 2 players compete to see who is the fatest typer!!
 
