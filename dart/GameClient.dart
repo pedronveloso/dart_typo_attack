@@ -8,10 +8,16 @@ class GameClient {
   bool isVisible;
   Map player1;
   Map player2;
+  int score = 0;
+  Element scoreEl;
+  int score2 = 0;
+  Element scoreEl2;
   // bool isConnected = false;
   
   GameClient(this.el, this.drawCanvas) {
     isVisible = false;
+    scoreEl = document.query('#player1 .score');
+    scoreEl2 = document.query('#player2 .score');
     
     Element inputBox = el.query('input');
     inputBox.on.keyDown.add((e) {
@@ -19,7 +25,7 @@ class GameClient {
         print(inputBox.value);
         
         socket.send(JSON.stringify({'action': 'testWord', 'args': {
-          'nickname': player['nickname'],
+          'nickname': player1['nickname'],
           'word': inputBox.value
         }}));
       }
@@ -48,6 +54,22 @@ class GameClient {
     el.query('#player1 h2').innerHTML = player1['nickname'];
   }
   
+  nextRound(args){
+    if (args['win']){
+      this.drawCanvas.playerWon(1);
+      score += 1;
+      scoreEl.innerHTML = score.toString();
+    }else{
+      score2 += 1;
+      scoreEl2.innerHTML = score2.toString();
+      this.drawCanvas.playerWon(2);
+    }
+    
+    window.setTimeout((){
+      drawCanvas.startNewRound(args['word']);
+    }, 2000);
+  }
+  
   setPlayer1(nickname) {
     player1 = {'nickname': nickname};
   }
@@ -68,6 +90,9 @@ class GameClient {
       switch(data['action']) {
         case 'startGame':
           startGame(data['args']);
+          break;
+        case 'nextRound':
+          nextRound(data['args']);
           break;
       }
       

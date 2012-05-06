@@ -19,6 +19,9 @@ void main() {
         case 'register':
           game.register(data['args'], conn);
           break;
+        case 'testWord':
+          game.testWord(data['args']);
+          break;
       }
     };
     
@@ -33,5 +36,5 @@ void main() {
     };
   };
   
-  server.listen('127.0.0.1', 9000);
+  server.listen('0.0.0.0', 9000);
 }

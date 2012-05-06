@@ -2,6 +2,7 @@ class Game {
   Map<String, WebSocketConnection> players;
   List words;
   int index = 0;
+  String lastWord;
   
   Game() {
     players = new Map();
@@ -34,6 +35,7 @@ class Game {
       if (players.length >= 2){
         ready = true;
         word = NextWord();
+        lastWord = word;
         players.forEach((k,v){
           if (k != nickname){
             player2 = {'nickname': k};
@@ -49,6 +51,27 @@ class Game {
         'args': {'ready': ready, 'player2': player2, 'word': word}
       }));
       print(players);
+    }
+  }
+  
+  testWord(args) {
+    if (args['word'] == lastWord){
+      lastWord = NextWord();
+      players.forEach((k,v) {
+        if (k == args['nickname']){
+          // ganhou
+          v.send(JSON.stringify({
+            'action': 'nextRound',
+            'args': {'win': true, 'word': lastWord}
+          }));
+        }else{
+          // perdeu
+          v.send(JSON.stringify({
+            'action': 'nextRound',
+            'args': {'win': false, 'word': lastWord}
+          }));
+        }
+      });
     }
   }
   
