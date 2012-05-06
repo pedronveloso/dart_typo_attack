@@ -1,10 +1,17 @@
 
 //class that deals with Canvas stuff
 class DrawCanvas {
+  CanvasElement canvas;
+  
+  DrawCanvas(CanvasElement el) {
+    canvas = el;
+    print(canvas);
+  }
+  
   
   //initialize the canvas we'll be drawing on
   Init(){
-    CanvasElement canvas = document.query("#canvas");
+    // CanvasElement canvas = document.query("#canvas");
     ctx = canvas.getContext("2d");
     window.setInterval(f() => drawFrame(), 20);
     word_x = 512;

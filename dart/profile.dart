@@ -1,8 +1,9 @@
 class Profile{
   int avatar;
-  string name;
-  string session;
-    void loadavatarselection(){
+  String name;
+  String session;
+  
+  void loadavatarselection(){
     document.query('#avatarslist').on.click.add((event) {
      if (event.target.id.contains(new RegExp("[0-9]"))){
         if (this.avatar != null) this.avatar.classes.remove('avatarselected');
@@ -11,14 +12,15 @@ class Profile{
      }
     });
   }
-   void collectdatnsubmit(){
+  
+  void collectdatnsubmit(){
     document.query('#startbtn').on.click.add((event){
-    this.name = document.query('#fname').value;
+      this.name = document.query('#fname').value;
     
     });
   } 
-    void listen2playerdatasumission(){
-      loadavatarselection(); 
-      collectdatnsubmit();
+  void listen2playerdatasumission(){
+    loadavatarselection(); 
+    collectdatnsubmit();
   }
 }
