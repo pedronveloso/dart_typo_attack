@@ -32,9 +32,9 @@ class GameClient {
     });
   }
   
-  register(nickname) {
+  register(nickname,avatar) {
     setPlayer1(nickname);
-    socket.send(JSON.stringify({'action': 'register', 'args': nickname}));
+    socket.send(JSON.stringify({'action': 'register', 'args': nickname,'avatar':avatar}));
   }
   
   startGame(args) {
@@ -55,6 +55,7 @@ class GameClient {
   }
   
   nextRound(args){
+    inputBox.value = '';
     if (args['win']){
       this.drawCanvas.playerWon(1);
       score += 1;

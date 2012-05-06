@@ -1,5 +1,5 @@
 body {
-	background: #dfdfdf url(images/typologo.png) no-repeat 20px 100px;
+	background: #dfdfdf no-repeat 20px 100px;
 	font-family: Helvetica,Arial,sans-serif;
 }
 
@@ -23,7 +23,10 @@ section {
         text-shadow: 1px 1px 1px rgba(0,0,0,1);
         text-align: center;
 	}
-
+#logo{
+position:absolute;
+top:50px;
+left:0px;}
 #profile {
 	margin-left: -250px;
 	width: 500px;
