@@ -20,12 +20,29 @@ class DrawCanvas {
     player1Won = true  ;
     isStopped = false;
     loadedBananaImg = false;
-    imgBanana = new Element.tag('img'); 
+    imgBanana = new Element.tag('img');
     imgBanana.src = "fighter.png";
     imgBanana.on.load.add((event) {
       loadedBananaImg=true;
     });
     print('init end');
+    
+
+      audio = new AudioElement();
+      
+      if (audio.canPlayType("audio/ogg", "") != "")
+        audio.src = "background_music/imperial_march.ogg";
+      
+      audio.on["canplaythrough"].add(playAudio);
+      audio.on["ended"].add(playAudio);
+
+    
+  }
+  
+  void playAudio(Event event)
+  {
+    print("${event.type}");
+    audio.play();
   }
 
   // draws a single frame of the game
@@ -120,4 +137,6 @@ class DrawCanvas {
   bool loadedBananaImg = false;
   bool player1Won;
   ImageElement imgBanana;
+  
+  AudioElement audio;
 }
