@@ -8,4 +8,4 @@ This project was done by:
 
 * [Pedro Veloso](https://github.com/pedronveloso/)
 * [David Elias](https://github.com/davidelias/)
-* []João Oliveira](https://github.com/joaoxsouls/)
+* [João Oliveira](https://github.com/joaoxsouls/)
