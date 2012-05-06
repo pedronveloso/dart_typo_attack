@@ -38,11 +38,12 @@ section {
 position:absolute;
 top:130px;
 left:20px;
-border-radius: 15px;
-border: solid 2px;
-padding: 15px;
 width: 400px;
 -webkit-transition: left 2s;
+height:300px;
+}
+#profileinput{
+margin: 5px 0 0 10px;
 }
 .avatarselected{
 	border: 2px solid black;
