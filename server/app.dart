@@ -1,7 +1,7 @@
 #import('dart:io');
 #import('dart:json');
 #source('Game.dart');
-
+#source('WordsGenerator.dart');
 void main() {
   Game game = new Game();
   HttpServer server = new HttpServer();
