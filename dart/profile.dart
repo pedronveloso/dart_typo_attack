@@ -2,6 +2,16 @@ class Profile{
   int avatar;
   String name;
   String session;
+  GameClient game;
+  Element startBtn;
+  
+  Profile(Element el, this.game) {
+    startBtn = el.query('button');
+    startBtn.on.click.add((e) {
+      this.name = el.query('input').value;
+      game.register(this.name);
+    });
+  }
   
   void loadavatarselection(){
     document.query('#avatarslist').on.click.add((event) {
@@ -16,7 +26,7 @@ class Profile{
   void collectdatnsubmit(){
     document.query('#startbtn').on.click.add((event){
       this.name = document.query('#fname').value;
-      document.query("#profile").style.left="-500px";
+      // document.query("#profile").style.left="-500px";
     });
   } 
   void listen2playerdatasumission(){

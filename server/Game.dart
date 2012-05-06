@@ -21,6 +21,10 @@ class Game {
         players.forEach((k,v){
           if (k != nickname){
             player2 = {'nickname': k};
+            v.send(JSON.stringify({
+              'action': 'startGame',
+              'args': {'ready': ready, 'player2': {'nickname': nickname}}
+            }));
           }
         });
       }
