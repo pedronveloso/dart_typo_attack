@@ -13,13 +13,14 @@ class GameClient {
   int score2 = 0;
   Element scoreEl2;
   // bool isConnected = false;
+  Element inputBox;
   
   GameClient(this.el, this.drawCanvas) {
     isVisible = false;
     scoreEl = document.query('#player1 .score');
     scoreEl2 = document.query('#player2 .score');
     
-    Element inputBox = el.query('input');
+    inputBox = el.query('input');
     inputBox.on.keyDown.add((e) {
       if (e.keyCode == 13){
         print(inputBox.value);
