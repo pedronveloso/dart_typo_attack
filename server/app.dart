@@ -1,6 +1,5 @@
 #import('dart:io');
 #import('dart:json');
-
 #source('Game.dart');
 
 void main() {

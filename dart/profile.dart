@@ -23,4 +23,5 @@ class Profile{
     loadavatarselection(); 
     collectdatnsubmit();
   }
+  
 }
