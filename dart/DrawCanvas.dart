@@ -21,7 +21,7 @@ class DrawCanvas {
     isStopped = false;
     loadedBananaImg = false;
     imgBanana = new Element.tag('img'); 
-    imgBanana.src = "banana.png";
+    imgBanana.src = "fighter.png";
     imgBanana.on.load.add((event) {
       loadedBananaImg=true;
     });
@@ -56,15 +56,15 @@ class DrawCanvas {
       // fun stuff .. this does the blincking
       drawNow++;
       if (drawNow>2){
-        ctx.strokeText(wordText, x, y);
+        ctx.strokeText(wordText, x-textSubtractLenght(wordText), y);
         if (drawNow>20)
           drawNow=0;
       }
     }else
-      ctx.strokeText(wordText, x, y);
+      ctx.strokeText(wordText, x-textSubtractLenght(wordText), y);
     
     if (loadedBananaImg) {
-      ctx.drawImage(imgBanana, x-15, y-160);
+      ctx.drawImage(imgBanana, x-64, y-140);
     }
     
    // });
@@ -93,18 +93,20 @@ class DrawCanvas {
   * Starts a new Round with a given word
   **/
   void startNewRound(String word){
-    document.query('#status').innerHTML = "mudar a cena";
     isStopped=false;
     wordText = word;
-    
   }
+  
+  int textSubtractLenght(String text){
+    return 7*text.length;
+  }
+  
   /**
   *clears screen and starts the game phase
   **/
   //variables here
   CanvasRenderingContext2D ctx;
-  static final String BACKGROUND_COLOR = "orange";
-  static final String NORMAL_TEXT_COLOR = "black";
+  static final String NORMAL_TEXT_COLOR = "white";
   static final String PLAYER1_TEXT_COLOR = "blue";
   static final String PLAYER2_TEXT_COLOR = "red";
   
