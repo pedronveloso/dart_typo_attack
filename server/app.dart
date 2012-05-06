@@ -17,7 +17,7 @@ void main() {
       var data = JSON.parse(message);
       switch(data['action']){
         case 'register':
-          game.register(data['args'], conn);
+          game.register(data['args'], data['avatar'], conn);
           break;
         case 'testWord':
           game.testWord(data['args']);

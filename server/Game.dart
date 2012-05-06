@@ -3,9 +3,10 @@ class Game {
   List words;
   int index = 0;
   String lastWord;
-  
+  Map Avatars;
   Game() {
     players = new Map();
+    Avatars = new Map();
     words = ['nothing', 'broadcast', 'cast', 'cost', 'cut', 'drunk', 'felt', 'forecast', 'ground', 'hit', 'lent', 'offset'];
   }
   
@@ -24,7 +25,7 @@ class Game {
    return word;
  }
   
-  register(nickname, conn) {
+  register(nickname, avatar, conn) {
     if (players.containsKey(nickname)){
       conn.send(JSON.stringify({'action': 'nicknameExists'}));
     }else{
@@ -32,6 +33,7 @@ class Game {
       String word =  'teste';
       var player2 = null;
       players[nickname] = conn;
+      this.Avatars[nickname] = avatar;
       if (players.length >= 2){
         ready = true;
         word = NextWord();
@@ -41,7 +43,7 @@ class Game {
             player2 = {'nickname': k};
             v.send(JSON.stringify({
               'action': 'startGame',
-              'args': {'ready': ready, 'player2': {'nickname': nickname}, 'word': word}
+              'args': {'ready': ready, 'player2': {'nickname': nickname}, 'word': word,'avatarp2':avatar}
             }));
           }
         });
